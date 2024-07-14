@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container text-center">
+    <p class="display-4">Students List</p>
+    <a href = "{{url_for("create")}}" class="btn btn-success">Create Student</a>
+    <a href = "{{url_for("home", order='asc')}}" class="btn btn-primary">Sort Ascending</a>
+    <a href = "{{url_for("home", order='desc')}}" class="btn btn-primary">Sort Descending</a>
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Hobbies</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{student.name}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.hobbies}}</td>
+                <td>{{student.country}}</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                                <a class="mx-2 btn btn-warning" href="/update/{{student._id}}">Update</a>
+                        </div>
+                        <div class="col-3">
+                            <form method="POST" action="{{url_for('delete_student', id = student._id)}}">
+                                <button class="mx-2 btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
