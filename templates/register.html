@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+{% block body %}
+<p class="text-center display-4">Register</p>
+<form method="POST" action="#">
+<div class="row justify-content-center align-items-center">
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input class="form-control" name="username" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input class="form-control" name="password" type="password"/>
+    </div>
+    <div class="mb-3 text-center">
+        <button class = 'btn btn-success'>Register</button><br />
+        <a href="{{url_for('todo.login')}}">Existing User? Login</a>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+    {% endif %}
+</div>
+</form>
+{% endblock %}

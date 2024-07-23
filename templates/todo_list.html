@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+{% block body %}
+<p class="display-4">Todos</p>
+<ul class="list-group">
+    {% for todo in todos %}
+    <li class="list-group-item">
+        {{todo.text}} <a href="{{url_for('todo.updateTodo', id=todo.id)}}" class="mx-5 btn btn-warning">Update</a><a href="{{url_for('todo.deleteTodo', id=todo.id)}}" class="btn btn-danger">Delete</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
